@@ -1,0 +1,118 @@
+body {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    font-size: 2em;
+    margin: 0px;
+}
+
+/*----------------------------
+  Title
+  ---------------------------*/
+.title {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 7rem;
+  margin: 1rem 0px;
+}
+
+#title {
+  margin: 0px;
+
+  font-size: 2em;
+  text-align: center;
+  vertical-align: text-top;
+}
+
+#subtitle {
+  margin: 0px;
+
+  font-size: 75%;
+}
+
+#subtitle > span {
+  font-weight: 300;
+  font-size: 80%;
+  vertical-align: middle;
+}
+/*----------------------------*/
+
+
+
+/*----------------------------
+  Container
+  ---------------------------*/
+.container {
+  padding-top: 8rem;
+  padding-bottom: 3.5rem;
+  padding: 8rem 1vw 3.5rem 1vw;
+  height: 72.5vh;
+  width: 97vw;
+
+  display: grid;
+  grid-gap: 3.5%;
+
+  grid-template-columns: 22% 50% 22%;
+  grid-template-rows: 85% 15%;
+  grid-template-areas:
+    "left center right"
+    "bottom bottom bottom";
+}
+
+/*--- Left ---*/
+.left {
+  background-color: #c8c8c8;
+  border-radius: 2vh;
+  grid-area: left;
+}
+/*-------------*/
+
+/*--- Center ---*/
+.center {
+  background-color: #c8c8c8;
+  border-radius: 2vh;
+  grid-area: center;
+}
+/*-------------*/
+
+/*--- Right ---*/
+.right {
+  background-color: #c8c8c8;
+  border-radius: 2vh;
+  grid-area: right;
+}
+/*-------------*/
+
+/*--- Bottom ---*/
+.bottom {
+  background-color: #c8c8c8;
+  border-radius: 2vh;
+  grid-area: bottom;
+}
+/*-------------*/
+
+/*----------------------------*/
+
+
+
+/*----------------------------
+  Footer
+  ---------------------------*/
+.footer {
+  /* position: absolute;
+  bottom: 0px; */
+  width: 100%;
+  height: 2.5rem;
+  margin: 1rem 0px;
+}
+
+#footer {
+  font-size: 75%;
+  font-weight: 300;
+}
+
+#footer > a {
+  color: blue;
+  text-decoration: none;
+}
+/*----------------------------*/
