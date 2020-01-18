@@ -1,0 +1,68 @@
+{
+  "items": {
+    "Glass": "glass",
+    "Stained Glass": "stained_glass",
+    "Glass Pane": "glass_pane",
+    "Stained Glass Pane": "stained_glass_pane",
+    "Terracotta (Hardened Clay)": "terracotta"
+  },
+
+  "colors": {
+    "White": "white",
+    "Orange": "orange",
+    "Magenta": "magenta",
+    "Light Blue": "light_blue",
+    "Yellow": "yellow",
+    "Lime": "lime",
+    "Pink": "pink",
+    "Gray": "gray",
+    "Light Gray": "light_gray",
+    "Cyan": "cyan",
+    "Purple": "purple",
+    "Blue": "blue",
+    "Brown": "brown",
+    "Green": "green",
+    "Red": "red",
+    "Black": "black"
+  },
+
+  "colorIDs": {
+    "white": "0",
+    "orange": "1",
+    "magenta": "2",
+    "light_blue": "3",
+    "yellow": "4",
+    "lime": "5",
+    "pink": "6",
+    "gray": "7",
+    "light_gray": "8",
+    "cyan": "9",
+    "purple": "10",
+    "blue": "11",
+    "brown": "12",
+    "green": "13",
+    "red": "14",
+    "black": "15"
+  },
+
+  "inventoryTypes": {
+    "Transfer Inventory": "transfer_inventory",
+    "Banker Edit GUI (Main)": "banker_edit_gui_main",
+    "Banker Edit GUI (Position)": "banker_edit_gui_position"
+  },
+
+  "colorItems": [
+    "stained_glass",
+    "stained_glass_pane",
+    "terracotta"
+  ],
+
+  "functions": {
+    "transfer_inventory": {
+      "Send 1": "send1",
+      "Send All": "send64",
+      "Cancel": "cancel"
+    }
+  }
+
+}

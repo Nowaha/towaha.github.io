@@ -5,16 +5,123 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-      <link rel="stylesheet" href="tempstyle.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="style.css">
 
       <script type="text/javascript" src="main.js"></script>
 
-      <title>Document</title>
+      <title>Inventory Creator</title>
   </head>
   <body>
-      <h1>Site under construction!</h1>
-      <p>Check back later.</p>
-      <h6>You can contact us in our <a href="https://discord.gg/K44K73F">discord</a></h6>
+    <div class="container-fluid">
+      <!-- Header -->
+      <div class="header">
+        <h1 class="text-center" id="title">Inventory Creator</h1>
+        <h4 class="border-bottom text-center" id="subtitle">Version: <span>1.1.08<span></h4>
+      </div>
+      <!------------>
+
+      <!-- Center -->
+      <div class="grid">
+        <div class="row">
+          <div class="left col m-2">
+            <div class="row justify-content-center">
+              <div class="col text-center">
+                <h3>Inventory Type</h3>
+                <select class="dropdown" id="inventoryTypeDropdown" name="state">
+                </select>
+              </div>
+            </div>
+            <hr class="horizontal-divider">
+            <div class="row">
+              <div class="col text-center">
+                <h3>Item</h3>
+                <select class="dropdown" id="itemDropdown" name="state">
+                </select>
+              </div>
+            </div>
+            <hr class="horizontal-divider">
+            <div class="row justify-content-center">
+              <div class="col text-center">
+                <h3>Color</h3>
+                <select class="dropdown" id="colorDropdown" name="state">
+                </select>
+              </div>
+              <div class="col text-center">
+                <h3>Function</h3>
+                <select class="dropdown" id="functionDropdown" name="state">
+                </select>
+              </div>
+            </div>
+            <hr class="horizontal-divider">
+            <div class="row justify-content-center">
+              <div class="col text-left">
+                <button type="button" class="btn btn-danger" id="clear">Clear</button>
+              </div>
+              <div class="col text-right">
+                <button type="button" class="btn btn-primary" id="apply">Apply</button>
+              </div>
+            </div>
+          </div>
+          <div class="center col-6 m-2">
+            <div id="inventory">
+
+            </div>
+          </div>
+          <div class="right col m-2">
+            <div class="row justify-content-center">
+              <div class="input-group mb-3" id="rowsInput">
+                <div class="input-group-prepend">
+                  <a class="btn btn-danger" type="button" id="removeRow">-</a>
+                </div>
+                <p class="form-control border-secondary text-center" id="rowsNum">Rows: ?</p>
+                <div class="input-group-append">
+                  <a class="btn btn-success" type="button" id="addRow">+</a>
+                </div>
+              </div>
+            </div>
+            <hr class="horizontal-divider">
+            <div class="row justify-content-center">
+              <h4>Selected Slots:</h4>
+            </div>
+            <div class="row justify-content-center">
+              <p id="selectedSlots"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="bottom col-10 mt-5">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button type="button" class="btn btn-success" id="copyOutput">Copy</button>
+              </div>
+              <p class="form-control text-truncate" id="output"></p>
+            </div>
+            <div class="toast">
+              <div class="toast-body text-center">
+                Copied to clipboard!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!------------>
+
+      <!-- Footer -->
+      <div class="fixed-bottom" id="footer">
+        <h4 class="border-top text-center">You can contact us on our <a href="https://discord.gg/K44K73F">discord<a></h4>
+        <h6 class="text-center font-italic">Copyright © 2020 Towaha, All Rights Reserved.</h6>
+      </div>
+      <!------------>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
   </body>
 </html>
