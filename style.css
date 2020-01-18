@@ -32,6 +32,12 @@ body {
   margin: 0px 10vw;
 }
 
+.horizontal-divider {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-width: 2px;
+  border-color: darkgray;
+}
   /* ---- Left ---- */
   .left {
     background-color: #cccccc;
@@ -80,8 +86,6 @@ body {
     width: 3.5vw;
     height: 3.5vw;
   }
-
-
   /* ------------- */
 
   /* --- Right --- */
@@ -104,11 +108,18 @@ body {
     color: white;
   }
 
-  .horizontal-divider {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-    border-width: 2px;
-    border-color: darkgray;
+  .displayNameRow > .input-group {
+    margin-bottom: 0px !important;
+    margin-top: 4px;
+    width: 90%;
+  }
+
+  #displayName {
+    background: #f5f5f5;
+  }
+
+  .disabledInput {
+    background: #e1e1e1 !important;
   }
   /* ------------- */
 

@@ -21,7 +21,7 @@
       <!-- Header -->
       <div class="header">
         <h1 class="text-center" id="title">Inventory Creator</h1>
-        <h4 class="border-bottom text-center" id="subtitle">Version: <span>1.1.08<span></h4>
+        <h4 class="border-bottom text-center" id="subtitle">Version: <span>1.3.10<span></h4>
       </div>
       <!------------>
 
@@ -57,6 +57,7 @@
                 </select>
               </div>
             </div>
+
             <hr class="horizontal-divider">
             <div class="row justify-content-center">
               <div class="col text-left">
@@ -85,8 +86,18 @@
               </div>
             </div>
             <hr class="horizontal-divider">
+            <div class="row justify-content-center displayNameRow">
+              <h3>Display Name</h3>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn btn-info" type="button" id="setDisplayName">Set</button>
+                </div>
+                <input type="text" class="form-control border-secondary" id="displayName">
+              </div>
+            </div>
+            <hr class="horizontal-divider">
             <div class="row justify-content-center">
-              <h4>Selected Slots:</h4>
+              <h3>Selected Slots</h3>
             </div>
             <div class="row justify-content-center">
               <p id="selectedSlots"></p>

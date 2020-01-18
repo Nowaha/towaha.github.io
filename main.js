@@ -14,6 +14,7 @@ $(document).ready(function() {
   loadJsonData();
   updateOutput();
   checkIfColorItem();
+  checkDisplayNameState();
 
   function loadJsonData() {
     $.getJSON("presets.json", function(data) {
@@ -153,16 +154,19 @@ $(document).ready(function() {
       selectedSlots.push(slot);
     }
     updateSelectedslots();
+    checkDisplayNameState();
   }
 
   function updateFunctionDropdown() {
     $("#functionDropdown").html("");
-    $("#functionDropdown").append(`<option value="none">None</option>`)
+    $("#functionDropdown").append(`<option value="none">None</option>`);
     $.getJSON("presets.json", function(data) {
-      if($("#inventoryTypeDropdown").val() == "transfer_inventory") {
-        $.each(data.functions.transfer_inventory, function(key, val) {
-            $("#functionDropdown").append(`<option value="${val}">${key}</option>`)
-        });
+      switch ($("#inventoryTypeDropdown").val()) {
+        case "transfer_inventory":
+          $.each(data.functions.transfer_inventory, function(key, val) {
+              $("#functionDropdown").append(`<option value="${val}">${key}</option>`)
+          });
+          break;
       }
     });
   }
@@ -177,7 +181,7 @@ $(document).ready(function() {
       for (const [slot, material] of items.entries()) {
         let foundMatch = false;
         groups.forEach(group => {
-          if(group.compare(material, functionSlots.get(slot), name)) {
+          if(group.compare(material, slot)) {
             let newGroup = group;
             newGroup.addSlot(slot);
             groups.pop(group);
@@ -192,6 +196,9 @@ $(document).ready(function() {
 
           if(functionSlots.has(slot))
             group.setFunction(functionSlots.get(slot));
+
+          if(namedSlots.has(slot))
+            group.setName(namedSlots.get(slot));
 
           groups.push(group);
         }
@@ -228,9 +235,22 @@ $(document).ready(function() {
 
   function checkIfColorItem() {
     if(colorItems.includes($('#itemDropdown').val())) {
-      $('#colorDropdown').attr("disabled", false);
+      $("#colorDropdown").attr("disabled", false);
+      $("#colorDropdown").find(".null").remove();
     } else {
-      $('#colorDropdown').attr("disabled", true);
+      $("#colorDropdown").attr("disabled", true);
+      $("#colorDropdown").prepend(`<option class="null" value="null">-</option>`);
+      $('#colorDropdown').val("null").trigger('change');
+    }
+  }
+
+  function checkDisplayNameState() {
+    if(selectedSlots.length > 0) {
+      $("#displayName").prop("disabled", false);
+      $("#displayName").removeClass("disabledInput");
+    } else {
+      $("#displayName").prop("disabled", true);
+      $("#displayName").addClass("disabledInput");
     }
   }
 
@@ -250,9 +270,13 @@ $(document).ready(function() {
       onSlotClick($(this).attr("id").split("-")[1], $(this));
   });
 
-  $('#itemDropdown').on('select2:select', function (e) {
+  $("#inventoryTypeDropdown").on('select2:select', function (e) {
+    updateFunctionDropdown();
+  });
+
+  $("#itemDropdown").on('select2:select', function (e) {
     checkIfColorItem();
-  });;
+  });
 
   $("#inventoryTypeDropdown").select2({
     width: '100%'
@@ -304,8 +328,34 @@ $(document).ready(function() {
 
         if(items.has(slot))
           items.delete(slot);
+
+        if(functionSlots.has(slot))
+          functionSlots.delete(slot);
+
+        if(namedSlots.has(slot))
+          namedSlots.delete(slot);
     });
 
+    selectedSlots = [];
+    updateSelectedslots();
+
+    updateOutput();
+  });
+
+  $("#setDisplayName").click(() => {
+    const name = $("#displayName").val();
+    selectedSlots.forEach(slot => {
+      if(name == "") {
+        if(namedSlots.has(slot))
+          namedSlots.delete(slot);
+      } else {
+        namedSlots.set(slot, name);
+      }
+
+      $("#slot-" + slot).find(".slot-background").attr("src", "images/slot.png");
+    });
+
+    $("#displayName").val("");
     selectedSlots = [];
     updateSelectedslots();
 
@@ -407,7 +457,7 @@ class SlotGroup {
         color += "_" + material.split("_")[1];
     }
 
-    if(color != null) {
+    if(color != null && colors.includes(color)) {
       return colorIDs.get(color);
     } else {
       return -1;

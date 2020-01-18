@@ -47,8 +47,8 @@
 
   "inventoryTypes": {
     "Transfer Inventory": "transfer_inventory",
-    "Banker Edit GUI (Main)": "banker_edit_gui_main",
-    "Banker Edit GUI (Position)": "banker_edit_gui_position"
+    "[WIP] Banker Edit GUI (Main)": "banker_edit_gui_main",
+    "[WIP] Banker Edit GUI (Position)": "banker_edit_gui_position"
   },
 
   "colorItems": [
@@ -64,5 +64,4 @@
       "Cancel": "cancel"
     }
   }
-
 }
