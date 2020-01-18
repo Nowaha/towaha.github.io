@@ -398,12 +398,16 @@ class SlotGroup {
     return formattedSlots;
   }
 
-  setColor(color) {
-    this.color = color;
-  }
-
   getByte() {
-    if(this.color != null) {
+    let color = null;
+    const material = this.material;
+    if(material.split("_").length > 0) {
+      color = material.split("_")[0];
+      if(material.split("_").length > 1 && color == "light")
+        color += "_" + material.split("_")[1];
+    }
+
+    if(color != null) {
       return colorIDs.get(color);
     } else {
       return -1;
@@ -425,4 +429,3 @@ class SlotGroup {
       ((this.name == null && namedSlots.has(slot)) || this.name == namedSlots.get(slot)));
   }
 }
-// {i:27,[(m:stained_glass_pane|b:15|s:0-10,17-27),(m:stained_glass|b:5|s:11|f:cash1|n:&aSend 1x),(m:stained_glass|b:3|s:13|f:cash64|n:&2Send all),(m:stained_glass|b:14|s:15|f:cancel|n:&cCancel)]}
