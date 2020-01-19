@@ -47,8 +47,8 @@
 
   "inventoryTypes": {
     "Transfer Inventory": "transfer_inventory",
-    "[WIP] Banker Edit GUI (Main)": "banker_edit_gui_main",
-    "[WIP] Banker Edit GUI (Position)": "banker_edit_gui_position"
+    "Banker Edit GUI (Main)": "banker_edit_gui_main",
+    "Banker Edit GUI (Position)": "banker_edit_gui_position"
   },
 
   "colorItems": [
@@ -59,9 +59,24 @@
 
   "functions": {
     "transfer_inventory": {
-      "Send 1": "send1",
-      "Send All": "send64",
+      "Send 1": "cash1",
+      "Send All": "cash64",
+      "Cheque": "cheque",
       "Cancel": "cancel"
+    },
+    "banker_edit_gui_main": {
+      "Change Name": "name",
+      "Change Position": "position",
+      "Change Skin": "skin",
+      "Delete": "delete"
+    },
+    "banker_edit_gui_position": {
+      "Change x": "x",
+      "Change y": "y",
+      "Change z": "z",
+      "Change yaw": "yaw",
+      "Change pitch": "pitch",
+      "Location Tool": "locationTool"
     }
   }
 }

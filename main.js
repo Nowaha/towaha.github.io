@@ -170,8 +170,21 @@ $(document).ready(function() {
               $("#functionDropdown").append(`<option value="${val}">${key}</option>`)
           });
           break;
+        case "banker_edit_gui_main":
+          $.each(data.functions.banker_edit_gui_main, function(key, val) {
+              $("#functionDropdown").append(`<option value="${val}">${key}</option>`)
+          });
+          break;
+        case "banker_edit_gui_position":
+          $.each(data.functions.banker_edit_gui_position, function(key, val) {
+              $("#functionDropdown").append(`<option value="${val}">${key}</option>`)
+          });
+          break;
       }
     });
+
+    functionSlots = new Map();
+    updateOutput();
   }
 
   function updateOutput() {
@@ -292,23 +305,29 @@ $(document).ready(function() {
   });
 
   $("#apply").click(() => {
-    let item = $("#itemDropdown").val();
+    const item = $("#itemDropdown").val();
     let color = null;
     if(colorItems.includes(item))
       color = $("#colorDropdown").val();
 
-    let func = $("#functionDropdown").val();
+    const func = $("#functionDropdown").val();
 
     selectedSlots.forEach(slot => {
       $("#slot-" + slot).find(".slot-item").show();
-      if(color == null) {
-        $("#slot-" + slot).find(".slot-item").attr("src", "images/items/" + item + ".png");
+      if(func == "cheque") {
+        $("#slot-" + slot).find(".slot-item").attr("src", "images/items/paper.png");
 
-        items.set(slot, item);
+        items.set(slot, "paper");
       } else {
-        $("#slot-" + slot).find(".slot-item").attr("src", "images/items/" + color + "_" + item + ".png");
+        if(color == null) {
+          $("#slot-" + slot).find(".slot-item").attr("src", "images/items/" + item + ".png");
 
-        items.set(slot, color + "_" + item);
+          items.set(slot, item);
+        } else {
+          $("#slot-" + slot).find(".slot-item").attr("src", "images/items/" + color + "_" + item + ".png");
+
+          items.set(slot, color + "_" + item);
+        }
       }
 
       if(func != "none")

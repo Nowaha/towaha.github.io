@@ -21,6 +21,18 @@ body {
   font-size: 1.3rem;
   font-weight: 300;
 }
+
+.documentation {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
+  color: black;
+  font-weight: 300;
+}
+
+.documentation > span {
+  color: #007bff;
+}
 /*------------------*/
 
 
