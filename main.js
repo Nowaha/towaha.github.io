@@ -48,6 +48,7 @@ $(document).ready(function() {
     items = new Map();
     updateRowsDisplay();
     updateSelectedslots();
+    updateOutput();
   }
   function removeRow() {
     rows--;
@@ -56,6 +57,7 @@ $(document).ready(function() {
     items = new Map();
     updateRowsDisplay();
     updateSelectedslots();
+    updateOutput();
   }
 
   function updateRowsDisplay() {
@@ -91,15 +93,16 @@ $(document).ready(function() {
          <div class="row justify-content-center">`;
       }
       inventoryContent +=
-      `<div class="slot" id="slot-${j}">
+      `<div class="slot" id="slot-${j}" title='Name: ""'>
           <img class="slot-background" src="images/slot.png">
-          <img class="slot-item" src="">
+          <img class="slot-item" src="" style="display:none">
        </div>`;
     }
 
     inventoryContent += `</div>`;
 
     $("#inventory").html(inventoryContent);
+    $('.slot').tooltip();
   }
 
   function updateSelectedslots() {
@@ -177,18 +180,15 @@ $(document).ready(function() {
     } else {
       let text = "{i:" + (rows * 9) + ",[";
 
-      let groups = [];
+      let groups = new Map();
       for (const [slot, material] of items.entries()) {
         let foundMatch = false;
-        groups.forEach(group => {
+        for (const [id, group] of groups.entries()) {
           if(group.compare(material, slot)) {
-            let newGroup = group;
-            newGroup.addSlot(slot);
-            groups.pop(group);
-            groups.push(newGroup);
+            group.addSlot(slot);
             foundMatch = true;
           }
-        });
+        }
 
         if(!foundMatch) {
           let group = new SlotGroup(material);
@@ -200,12 +200,12 @@ $(document).ready(function() {
           if(namedSlots.has(slot))
             group.setName(namedSlots.get(slot));
 
-          groups.push(group);
+          groups.set(groups.size, group);
         }
       }
 
       let containsGroup = false;
-      groups.forEach(group => {
+      for (const [id, group] of groups.entries()) {
         const byte = group.getByte();
         let byteText = "";
         if(byte != -1)
@@ -226,7 +226,7 @@ $(document).ready(function() {
 
         text += "(m:" + group.getMaterialFormatted() + byteText + "|s:" + group.getFormattedSlots() + functionText + nameText + ")";
         containsGroup = true;
-      });
+      };
 
       text += "]}";
       $("#output").html(text);
@@ -300,6 +300,7 @@ $(document).ready(function() {
     let func = $("#functionDropdown").val();
 
     selectedSlots.forEach(slot => {
+      $("#slot-" + slot).find(".slot-item").show();
       if(color == null) {
         $("#slot-" + slot).find(".slot-item").attr("src", "images/items/" + item + ".png");
 
@@ -323,7 +324,7 @@ $(document).ready(function() {
   });
   $("#clear").click(() => {
     selectedSlots.forEach(slot => {
-        $("#slot-" + slot).find(".slot-item").attr("src", "");
+        $("#slot-" + slot).find(".slot-item").hide();
         $("#slot-" + slot).find(".slot-background").attr("src", "images/slot.png");
 
         if(items.has(slot))
@@ -348,11 +349,14 @@ $(document).ready(function() {
       if(name == "") {
         if(namedSlots.has(slot))
           namedSlots.delete(slot);
+
+        $("#slot-" + slot).prop("title", `Name: ""`).tooltip('dispose').tooltip();
       } else {
         namedSlots.set(slot, name);
       }
 
       $("#slot-" + slot).find(".slot-background").attr("src", "images/slot.png");
+      $("#slot-" + slot).prop("title", `Name: "${name}"`).tooltip('dispose').tooltip();
     });
 
     $("#displayName").val("");
@@ -420,7 +424,7 @@ class SlotGroup {
   }
 
   getFormattedSlots() {
-    const slots = this.slots;
+    const slots = this.slots.sort((a, b) => a - b);
 
     let streak = 0;
     let formattedSlots = "";
@@ -475,7 +479,7 @@ class SlotGroup {
   compare(material, slot) {
     return (
       this.material == material &&
-      ((this.func == null && functionSlots.has(slot)) || this.func == functionSlots.get(slot)) &&
-      ((this.name == null && namedSlots.has(slot)) || this.name == namedSlots.get(slot)));
+      ((this.func == null && !functionSlots.has(slot)) || this.func == functionSlots.get(slot)) &&
+      ((this.name == null && !namedSlots.has(slot)) || this.name == namedSlots.get(slot)));
   }
 }
