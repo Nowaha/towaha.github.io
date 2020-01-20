@@ -26,7 +26,7 @@ body {
   width: 100%;
   text-align: center;
   font-size: 1.4rem;
-  color: black;
+  color: black !important;
   font-weight: 300;
 }
 

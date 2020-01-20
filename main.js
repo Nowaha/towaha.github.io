@@ -416,6 +416,18 @@ class SlotGroup {
         materialFormatted = materialFormatted.substring(color.length + 1);
     }
 
+    if(materialFormatted.includes("~"))
+      materialFormatted = materialFormatted.split("~")[0];
+
+    return materialFormatted;
+  }
+
+  getExtraMaterialData() {
+    let materialFormatted = null;
+
+    if(this.material.includes("~"))
+      materialFormatted = this.material.split("~")[1];
+
     return materialFormatted;
   }
 
@@ -482,6 +494,8 @@ class SlotGroup {
 
     if(color != null && colors.includes(color)) {
       return colorIDs.get(color);
+    } else if(this.getExtraMaterialData() != null) {
+      return this.getExtraMaterialData();
     } else {
       return -1;
     }

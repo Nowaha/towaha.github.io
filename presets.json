@@ -4,7 +4,19 @@
     "Stained Glass": "stained_glass",
     "Glass Pane": "glass_pane",
     "Stained Glass Pane": "stained_glass_pane",
-    "Terracotta (Hardened Clay)": "terracotta"
+
+    "Oak Sign": "sign~0",
+    "Spruce Sign": "sign~1",
+    "Birch Sign": "sign~2",
+    "Jungle Sign": "sign~3",
+    "Acacia Sign": "sign~4",
+    "Dark Oak Sign": "sign~5",
+
+    "Player Head (Steve)": "skull_item~3",
+
+    "Paper": "paper",
+    "Ender Pearl": "ender_pearl",
+    "Stick": "stick"
   },
 
   "colors": {
@@ -65,18 +77,18 @@
       "Cancel": "cancel"
     },
     "banker_edit_gui_main": {
-      "Change Name": "name",
-      "Change Position": "position",
-      "Change Skin": "skin",
+      "Change Name": "change_name",
+      "Change Position": "change_position",
+      "Change Skin": "change_skin",
       "Delete": "delete"
     },
     "banker_edit_gui_position": {
-      "Change x": "x",
-      "Change y": "y",
-      "Change z": "z",
-      "Change yaw": "yaw",
-      "Change pitch": "pitch",
-      "Location Tool": "locationTool"
+      "Change x": "change_x",
+      "Change y": "change_y",
+      "Change z": "change_z",
+      "Change yaw": "change_yaw",
+      "Change pitch": "change_pitch",
+      "Location Tool": "location_tool"
     }
   }
 }
