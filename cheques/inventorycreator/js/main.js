@@ -17,7 +17,7 @@ $(document).ready(function() {
   checkDisplayNameState();
 
   function loadJsonData() {
-    $.getJSON("presets.json", function(data) {
+    $.getJSON("/cheques/inventorycreator/js/presets.json", function(data) {
       $.each(data.inventoryTypes, function(key, val) {
           $("#inventoryTypeDropdown").append(`<option value="${val}">${key}</option>`)
       });
@@ -163,7 +163,7 @@ $(document).ready(function() {
   function updateFunctionDropdown() {
     $("#functionDropdown").html("");
     $("#functionDropdown").append(`<option value="none">None</option>`);
-    $.getJSON("presets.json", function(data) {
+    $.getJSON("/cheques/inventorycreator/js/presets.json", function(data) {
       switch ($("#inventoryTypeDropdown").val()) {
         case "transfer_inventory":
           $.each(data.functions.transfer_inventory, function(key, val) {
